@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oci-utility-job-configmap
+data:
+  job-action: "assure-lb-cipher-suite"
+  job-arg-cipher-suite-name: "oci-compatible-ssl-cipher-suite-v1"
+#  job-arg-cipher-suite-name: "oci-modern-ssl-cipher-suite-v1"
+#  job-arg-cipher-suite-name: "oci-default-ssl-cipher-suite-v1"
+  compartment-id: "<compartment OCID>"
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: oci-utility-job
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+      - name: ocirsecret
+      containers:
+        - name: oci-utility-job
+          image: <region name>/<tenancy name>/oci-utility-job:latest
+          imagePullPolicy: Always
+          env:
+            - name: compartment-id
+              valueFrom:
+                configMapKeyRef:
+                  name: oci-utility-job-configmap
+                  key:  compartment-id
+            - name: job-action
+              valueFrom:
+                configMapKeyRef:
+                  name: oci-utility-job-configmap
+                  key:  job-action
+            - name: job-arg-cipher-suite-name
+              valueFrom:
+                configMapKeyRef:
+                  name: oci-utility-job-configmap
+                  key:  job-arg-cipher-suite-name
+
+      restartPolicy: Never
+  backoffLimit: 1
+
