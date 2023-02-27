@@ -1,3 +1,3 @@
-kubectl delete -f oci_utility_job.yaml
-kubectl apply -f oci_utility_job.yaml
+kubectl delete -f job.yaml
+kubectl apply -f job.yaml
 kubectl get all

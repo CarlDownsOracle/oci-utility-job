@@ -4,7 +4,7 @@ metadata:
   name: oci-utility-job-configmap
 data:
   job-action: "assure-lb-cipher-suite"
-  job-arg-cipher-suite-name: "oci-compatible-ssl-cipher-suite-v1"
+  job-arg1: "oci-compatible-ssl-cipher-suite-v1"
 #  job-arg-cipher-suite-name: "oci-modern-ssl-cipher-suite-v1"
 #  job-arg-cipher-suite-name: "oci-default-ssl-cipher-suite-v1"
   compartment-id: "<compartment OCID>"
@@ -24,21 +24,21 @@ spec:
           image: <region name>/<tenancy name>/oci-utility-job:latest
           imagePullPolicy: Always
           env:
-            - name: compartment-id
+            - name: compartment_id
               valueFrom:
                 configMapKeyRef:
                   name: oci-utility-job-configmap
-                  key:  compartment-id
-            - name: job-action
+                  key:  compartment_id
+            - name: job_action
               valueFrom:
                 configMapKeyRef:
                   name: oci-utility-job-configmap
-                  key:  job-action
-            - name: job-arg-cipher-suite-name
+                  key:  job_action
+            - name: job_arg1
               valueFrom:
                 configMapKeyRef:
                   name: oci-utility-job-configmap
-                  key:  job-arg-cipher-suite-name
+                  key:  job_arg1
 
       restartPolicy: Never
   backoffLimit: 1

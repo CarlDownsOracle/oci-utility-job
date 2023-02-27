@@ -11,11 +11,13 @@ import os
 # Environment
 # ----------------------------------
 
-dev_mode = os.getenv('dev-mode', 'False') == 'True'
+dev_mode = os.getenv('dev_mode', 'False') == 'True'
 profile_name = os.getenv('OCI_CLI_PROFILE', "not-configured")
+compartment_id = os.getenv('compartment_id', "not-configured")
 
-compartment_id = os.getenv('compartment-id', "not-configured")
-job_action = os.getenv('job-action', 'not-configured')
+job_action = os.getenv('job_action', 'not-configured')
+job_arg1 = os.getenv('job_arg1', "not-configured")
+
 
 # ----------------------------------
 # Job:
@@ -27,24 +29,24 @@ job_action = os.getenv('job-action', 'not-configured')
 #       oci-default-ssl-cipher-suite-v1
 # ----------------------------------
 
-cipher_suite_job = 'assure-lb-cipher-suite'
-target_cipher_suite_name = os.getenv('job-arg-cipher-suite-name', "not-configured")
+cipher_suite_job_name = 'assure-lb-cipher-suite'
 
 # ----------------------------------
 # Client Setup
 # ----------------------------------
 
-config = {}
-signer = None
+identity_client = None
+load_balancer_client = None
 
 if dev_mode:
     config = from_file(profile_name=profile_name)
+    identity_client = IdentityClient(config=config)
+    load_balancer_client = LoadBalancerClient(config=config)
 else:
     # OKE supports Instance Principals (not Resource Principals)
     signer = oci.auth.signers.InstancePrincipalsSecurityTokenSigner()
-
-identity_client = IdentityClient(config=config, signer=signer)
-load_balancer_client = LoadBalancerClient(config=config, signer=signer)
+    identity_client = IdentityClient(config={}, signer=signer)
+    load_balancer_client = LoadBalancerClient(config={}, signer=signer)
 
 # ----------------------------------
 # Helper Methods
@@ -147,15 +149,15 @@ if __name__ == "__main__":
 
     set_logging_level()
     logging.info('oci_utility_job')
-    logging.info('config / dev_mode: {}'.format(dev_mode))
-    logging.info('config / compartment_id: {}'.format(compartment_id))
-    logging.info('config / job_action: {}'.format(job_action))
-    logging.info('config / job_action_arg: {}'.format(target_cipher_suite_name))
+    logging.info('dev_mode = {}'.format(dev_mode))
+    logging.info('compartment_id = {}'.format(compartment_id))
+    logging.info('job_action = {}'.format(job_action))
+    logging.info('job_arg1 = {}'.format(job_arg1))
 
     results = dict()
 
-    if job_action == cipher_suite_job:
-        results[job_action] = update_cipher_suite_for_all_load_balancers(target_cipher_suite_name)
+    if job_action == cipher_suite_job_name:
+        results[job_action] = update_cipher_suite_for_all_load_balancers(job_arg1)
     else:
         logging.error('job_action not supported: {}'.format(job_action))
 
