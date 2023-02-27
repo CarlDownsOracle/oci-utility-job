@@ -36,10 +36,10 @@ This authorizes your OKE worker nodes to perform job actions.
 
     All {instance.compartment.id = 'ocid1.compartment.oc1..'}
 
-#### OCI Policy for 'assure-lb-cipher-suite' Job
+#### OCI Policies
 
 Create a policy in the same **named compartment**, granting the following
-the permissions required for the 'assure-lb-cipher-suite' action.
+the permissions required for the **'assure-lb-cipher-suite'** action.
 
     Allow dynamic-group <your-dynamic-group> to manage load-balancers in compartment <name>
     Allow dynamic-group <your-dynamic-group> to use virtual-network-family in compartment <name>
