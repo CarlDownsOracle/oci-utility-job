@@ -128,12 +128,20 @@ You need to be [logged into OCIR](https://docs.oracle.com/en-us/iaas/Content/Fun
 
     source job-build-tag-push.sh
 
+#### Configure the job.yaml file
+
+This YAML runs the job with action = '**assure-lb-cipher-suite**'.  Update the YAML file with your compartment ID and target cipher suite beforehand.
+
+    metadata:
+      name: oci-utility-job-configmap
+    data:
+      job-action: "assure-lb-cipher-suite"
+      job-arg1: "oci-compatible-ssl-cipher-suite-v1"
+    #  job-arg-cipher-suite-name: "oci-modern-ssl-cipher-suite-v1"
+    #  job-arg-cipher-suite-name: "oci-default-ssl-cipher-suite-v1"
+      compartment-id: "<compartment OCID>"
+
 #### Run the Job
-
-This YAML runs
-the job with action = '**assure-lb-cipher-suite**'.  
-
-Update the YAML file with your compartment ID and target cipher suite beforehand.
 
     source job.run.sh
 
