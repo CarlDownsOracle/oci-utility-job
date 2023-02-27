@@ -21,6 +21,13 @@ See the [instructions](https://docs.oracle.com/en-us/iaas/tools/python/latest) f
 
 This is a good article describing key [OCI concepts](https://blogs.oracle.com/developers/post/introduction-to-the-key-concepts-of-oracle-cloud-infrastructure).
 
+#### OCI Compartment
+
+OCI IAM is based on Compartments.  This example assumes that all relevant resources are 
+provisioned in a single non-root level compartment.  
+
+We'll refer to it as **compartment X**.
+
 #### OKE Cluster
 
 You will need an OCI Container Engine (OKE) instance.
@@ -31,30 +38,33 @@ This example assumes that you have deployed a [Kubernetes Service of type load b
 
 #### OCI Dynamic Group
 
-Create a dynamic group for any instance in a **named compartment**.
+Create a dynamic group for any instance in **compartment X**.
 This authorizes your OKE worker nodes to perform job actions. 
 
     All {instance.compartment.id = 'ocid1.compartment.oc1..'}
 
 #### OCI Policies
 
-Create a policy in the same **named compartment**, granting the following
-the permissions required for the **'assure-lb-cipher-suite'** action.
+Create a policy in **compartment X**, granting the following roles (permission groups) to your dynamic group as is
+required for the Job.
 
-    Allow dynamic-group <your-dynamic-group> to manage load-balancers in compartment <name>
-    Allow dynamic-group <your-dynamic-group> to use virtual-network-family in compartment <name>
+    Allow dynamic-group <your-dynamic-group> to manage load-balancers in compartment <name of X>
+    Allow dynamic-group <your-dynamic-group> to use virtual-network-family in compartment <name of X>
 
 
 
 ## Local Development
 
-Install the [OCI CLI](https://enabling-cloud.github.io/oci-learning/manual/OciCliUpAndRunningOnWindows.html) and configure it to have access to your tenancy.
+Obtain your OCI configuration file by:
+
+- Downloading it from the OCI Console via the User Settings / Capabilities page. 
+- Installing the [OCI CLI](https://enabling-cloud.github.io/oci-learning/manual/OciCliUpAndRunningOnWindows.html)
 
 View your [OCI configuration](https://docs.oracle.com/en-us/iaas/tools/python/2.93.0/configuration.html) (assuming Linux or Mac)
 
     % cat ~/.oci/config
     
-Here is an example file config entry:
+Here is an example config entry:
 
     [Default]
     user=ocid1.user.oc1..
