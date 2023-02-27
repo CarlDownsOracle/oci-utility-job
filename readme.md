@@ -42,9 +42,9 @@ required for the Job.
 
 Here are the actions currently implemented:
 
-| Action                 |                               Description                               | Notes                          |
-|------------------------|:-----------------------------------------------------------------------:|:-------------------------------|
-| assure-lb-cipher-suite | Assures all load balancer listener cipher suites match the target suite | Applies only to SSL listeners within your compartment |
+| Action                 |                                                                                                                     Description                                                                                                                     | Notes                          |
+|------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------|
+| assure-lb-cipher-suite | Assures all load balancer listener cipher suites match the target suite.  Here are the [pre-defined cipher suites](https://docs.oracle.com/en-us/iaas/Content/Balance/Tasks/managingciphersuites_topic-Predefined_Cipher_Suites.htm) to choose from | Applies only to SSL listeners within your compartment |
 
 
 
