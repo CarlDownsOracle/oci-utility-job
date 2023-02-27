@@ -25,8 +25,9 @@ This is a good article describing key [OCI concepts](https://blogs.oracle.com/de
 
 You will need an OCI Container Engine (OKE) instance.
 
-This example assumes that you have deployed a Service which provisions a load balancer with a listener that
-supports https protocol.
+#### Load Balancer
+
+This example assumes that you have deployed a [Kubernetes Service of type load balancer](https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengcreatingloadbalancer.htm) with an HTTPS listener.  
 
 #### OCI Dynamic Group
 
