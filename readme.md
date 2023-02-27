@@ -45,7 +45,7 @@ the permissions required for the 'assure-lb-cipher-suite' action.
 
 
 
-## Local Development Mode
+## Local Development
 
 Install the [OCI CLI](https://enabling-cloud.github.io/oci-learning/manual/OciCliUpAndRunningOnWindows.html) and configure it to have access to your tenancy.
 
@@ -107,29 +107,30 @@ Successful output:
         ]
     }
 
+Output shows **"updated":true** along with current (old) and newly assigned cipher suite for load balancer listeners that are modified.
 
-## Kubernetes Job Mode
+## Kubernetes Job
 
 #### Build the Container and Push to OCIR
 
 You need to be [logged into OCIR](https://docs.oracle.com/en-us/iaas/Content/Functions/Tasks/functionslogintoocir.htm) before running this.
 
-    source job.build-tag-push.sh
+    source job-build-tag-push.sh
 
-#### Run the 'assure-lb-cipher-suite' Job
+#### Run the Job
 
 This YAML runs
-the job with action = 'assure-lb-cipher-suite'.  You will
-need to update the YAML file with your compartment ID and
-target cipher suite beforehand.
+the job with action = '**assure-lb-cipher-suite**'.  
 
-    source job.assure-lb-cipher-suite.sh
+Update the YAML file with your compartment ID and target cipher suite beforehand.
+
+    source job.run.sh
 
 #### Review Job Results
 
 Tail the logs that the job outputs.
 
-    source job.logs.sh
+    source job-tail-logs.sh
 
 # References
 
