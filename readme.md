@@ -30,16 +30,15 @@ We'll refer to it as **compartment X**.
 
 #### OKE Cluster
 
-You will need an OCI Container Engine (OKE) instance.
+Create an OCI Container Engine (OKE) instance in **compartment X.**
 
 #### Load Balancer
 
-This example assumes that you have deployed a [Kubernetes Service of type load balancer](https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengcreatingloadbalancer.htm) with an HTTPS listener.  
+Deploy a [Kubernetes Service of type load balancer](https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengcreatingloadbalancer.htm) with an HTTPS listener.  
 
 #### OCI Dynamic Group
 
-Create a dynamic group for any instance in **compartment X**.
-This authorizes your OKE worker nodes to perform job actions. 
+Create a dynamic group for any instance in **compartment X**  to authorize your OKE worker nodes to perform job actions. 
 
     All {instance.compartment.id = 'ocid1.compartment.oc1..'}
 
@@ -60,11 +59,11 @@ Obtain your OCI configuration file by:
 - Downloading it from the OCI Console via the User Settings / Capabilities page. 
 - Installing the [OCI CLI](https://enabling-cloud.github.io/oci-learning/manual/OciCliUpAndRunningOnWindows.html)
 
-View your [OCI configuration](https://docs.oracle.com/en-us/iaas/tools/python/2.93.0/configuration.html) (assuming Linux or Mac)
+Your [OCI configuration](https://docs.oracle.com/en-us/iaas/tools/python/2.93.0/configuration.html) goes here:
 
     % cat ~/.oci/config
     
-Here is an example config entry:
+Here is an example:
 
     [Default]
     user=ocid1.user.oc1..
@@ -73,10 +72,15 @@ Here is an example config entry:
     region=us-phoenix-1 (etc)
     key_file=~/.oci/your-key.pem
 
-You may have multiple profiles other than 'Default'.  If so, set this environment 
-variable to one of your profiles.
+    [Another]
+    user=ocid1.user.oc1..
+    fingerprint=...
+    ...
 
-    export OCI_CLI_PROFILE=Default
+You may have multiple profiles.  If so, set this environment 
+variable to one of the named profiles.
+
+    export OCI_CLI_PROFILE=Another
 
 Set up a Python virtual env, activate it, and install the requirements in your virtual env:
 
