@@ -15,11 +15,7 @@ Here are the actions currently implemented:
 
 #### OCI Tenancy
 
-You will need an OCI tenancy.  Check out the [OCI Cloud Free Tier](https://www.oracle.com/cloud/free/)!
-
-See the [instructions](https://docs.oracle.com/en-us/iaas/tools/python/latest) for setting up API access to your tenancy.
-
-This is a good article describing key [OCI concepts](https://blogs.oracle.com/developers/post/introduction-to-the-key-concepts-of-oracle-cloud-infrastructure).
+You will need an OCI tenancy.  Check out the [OCI Cloud Free Tier](https://www.oracle.com/cloud/free/)!  If you are new to OCI, this is a good article describing key [OCI concepts](https://blogs.oracle.com/developers/post/introduction-to-the-key-concepts-of-oracle-cloud-infrastructure).
 
 #### OCI Compartment
 
