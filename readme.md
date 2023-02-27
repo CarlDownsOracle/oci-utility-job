@@ -95,31 +95,6 @@ With that in place, export the env variables the Python script is expecting and 
 
     python3 main.py
 
-Successful output:
-
-    INFO:root:oci_utility_job
-    INFO:root:dev_mode = False
-    INFO:root:compartment_id = <OCID>
-    INFO:root:job_action = assure-lb-cipher-suite
-    INFO:root:job_arg1 = oci-compatible-ssl-cipher-suite-v1
-    INFO:root:{
-        "assure-lb-cipher-suite": [
-            {
-                "load_balancer_id": "<OCID>",
-                "listener_name": "TCP-80"
-            },
-            {
-                "load_balancer_id": "<OCID>",
-                "listener_name": "TCP-443",
-                "current_cipher_suite_name": "oci-modern-ssl-cipher-suite-v1",
-                "new_cipher_suite_name": "oci-compatible-ssl-cipher-suite-v1",
-                "updated": true
-            }
-        ]
-    }
-
-Output shows **"updated":true** along with current (old) and newly assigned cipher suite for load balancer listeners that are modified.
-
 ## Kubernetes Job
 
 #### Build the Container and Push to OCIR
@@ -150,6 +125,32 @@ This YAML runs the job with action = '**assure-lb-cipher-suite**'.  Update the Y
 Tail the logs that the job outputs.
 
     source job-tail-logs.sh
+
+#### Successful Job Output:
+
+Output shows **"updated":true** along with current (old) and newly assigned cipher suite for load balancer listeners that are modified.
+
+
+    INFO:root:oci_utility_job
+    INFO:root:dev_mode = False
+    INFO:root:compartment_id = <OCID>
+    INFO:root:job_action = assure-lb-cipher-suite
+    INFO:root:job_arg1 = oci-compatible-ssl-cipher-suite-v1
+    INFO:root:{
+        "assure-lb-cipher-suite": [
+            {
+                "load_balancer_id": "<OCID>",
+                "listener_name": "TCP-80"
+            },
+            {
+                "load_balancer_id": "<OCID>",
+                "listener_name": "TCP-443",
+                "current_cipher_suite_name": "oci-modern-ssl-cipher-suite-v1",
+                "new_cipher_suite_name": "oci-compatible-ssl-cipher-suite-v1",
+                "updated": true
+            }
+        ]
+    }
 
 # References
 
