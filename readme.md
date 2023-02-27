@@ -73,8 +73,8 @@ Here is an example config entry:
     region=us-phoenix-1 (etc)
     key_file=~/.oci/your-key.pem
 
-You may have multiple profiles other than 'Default'.  If so, et this environment 
-variable to the ~/.oci/config profile.
+You may have multiple profiles other than 'Default'.  If so, set this environment 
+variable to one of your profiles.
 
     export OCI_CLI_PROFILE=Default
 
