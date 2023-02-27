@@ -4,11 +4,11 @@ This code sample demonstrates how to build and deploy a utility Kubernetes job t
 
 ## Getting Started
 
-#### OCI Tenancy
+#### Tenancy
 
 You will need an OCI tenancy.  Check out the [OCI Cloud Free Tier](https://www.oracle.com/cloud/free/)!  If you are new to OCI, this is a good article describing key [OCI concepts](https://blogs.oracle.com/developers/post/introduction-to-the-key-concepts-of-oracle-cloud-infrastructure).
 
-#### OCI Compartment
+#### Compartment
 
 OCI IAM is based on Compartments.  This example assumes that all relevant resources are 
 provisioned in a single non-root level compartment.  
@@ -23,13 +23,13 @@ Create an OCI Container Engine (OKE) instance in **compartment X.**
 
 Deploy a [Kubernetes Service of type load balancer](https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengcreatingloadbalancer.htm) with an HTTPS listener.  
 
-#### OCI Dynamic Group
+#### Dynamic Group
 
 Create a dynamic group for any instance in **compartment X**  to authorize your OKE worker nodes to perform job actions. 
 
     All {instance.compartment.id = 'ocid1.compartment.oc1..'}
 
-#### OCI Policies
+#### Policies
 
 Create a policy in **compartment X**, granting the following roles (permission groups) to your dynamic group as is
 required for the Job.
