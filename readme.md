@@ -116,7 +116,11 @@ This YAML runs the job with action = '**assure-lb-cipher-suite**'.  Update the Y
     #  job-arg-cipher-suite-name: "oci-default-ssl-cipher-suite-v1"
       compartment-id: "<compartment OCID>"
 
+
+
 #### Run the Job
+
+If you have not done so, [configure an 'ocirsecret'](https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengpullingimagesfromocir.htm) in order for OKE to pull your Docker image from OCIR.
 
     source job.run.sh
 
